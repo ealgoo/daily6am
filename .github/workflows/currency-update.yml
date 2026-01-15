@@ -1,0 +1,49 @@
+name: Update Currency Rates
+
+on:
+  schedule:
+    # Runs at 6am PST (14:00 UTC) every day
+    - cron: '0 14 * * *'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  update-rates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch currency rates and update file
+        run: |
+          # Fetch rates from frankfurter.app (free, no API key needed)
+          RATES=$(curl -s "https://api.frankfurter.app/latest?from=USD&to=KRW,JPY,CNY")
+
+          # Parse rates using jq
+          KRW=$(echo $RATES | jq -r '.rates.KRW')
+          JPY=$(echo $RATES | jq -r '.rates.JPY')
+          CNY=$(echo $RATES | jq -r '.rates.CNY')
+          DATE=$(echo $RATES | jq -r '.date')
+
+          # Create currency.txt
+          cat > currency.txt << EOF
+          Currency Exchange Rates ($DATE)
+          ============================================
+
+          US Dollar (USD) Exchange Rates:
+
+          1 USD = $KRW KRW (South Korean Won)
+          1 USD = $JPY JPY (Japanese Yen)
+          1 USD = $CNY CNY (Chinese Yuan)
+
+          Source: European Central Bank via Frankfurter API
+          Updated automatically by GitHub Actions
+          EOF
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add currency.txt
+          git diff --quiet --cached || git commit -m "Update currency rates for $(date +%Y-%m-%d)"
+          git push
