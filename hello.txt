@@ -1,0 +1,16 @@
+Lines of Logic
+
+In the quiet glow of monitors at night,
+We craft our worlds with keystrokes light,
+Each semicolon, bracket, brace,
+A puzzle piece that finds its place.
+
+Bugs emerge like stubborn weeds,
+We trace the flow, plant better seeds,
+And when at last the tests turn green,
+A sweeter victory's never seen.
+
+From simple loops to systems vast,
+We build the future from the past,
+One function, class, and module more—
+Creating what was not before.
