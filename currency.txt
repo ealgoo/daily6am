@@ -1,10 +1,10 @@
-Currency Exchange Rates (2026-02-13)
+Currency Exchange Rates (2026-02-16)
 ============================================
 
 US Dollar (USD) Exchange Rates:
 
-1 USD = 1446.45 KRW (South Korean Won)
-1 USD = 153.29 JPY (Japanese Yen)
+1 USD = 1441.42 KRW (South Korean Won)
+1 USD = 153.34 JPY (Japanese Yen)
 1 USD = 6.9086 CNY (Chinese Yuan)
 
 Source: European Central Bank via Frankfurter API
